@@ -12,7 +12,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SIGN_IN, SIGN_UP } from "../mutations/AuthMutations";
+import { SIGN_IN, SIGN_UP } from "../mutations/authMutations";
 import { SignInResponse } from "../types/signInResponse";
 import { User } from "../types/user";
 

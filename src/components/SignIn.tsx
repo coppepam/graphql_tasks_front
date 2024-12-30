@@ -12,7 +12,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SIGN_IN } from "../mutations/AuthMutations";
+import { SIGN_IN } from "../mutations/authMutations";
 import { SignInResponse } from "../types/signInResponse";
 
 const theme = createTheme();
@@ -43,7 +43,7 @@ export default function SignIn() {
         navigate("/");
       }
     } catch (err: unknown) {
-      if (err.message === "Unauthorized") {
+      if ((err as Error).message === "Unauthorized") {
         setFailSignIn(true);
         return;
       }
