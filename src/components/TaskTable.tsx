@@ -1,3 +1,4 @@
+import { Stack } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -6,13 +7,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Task } from "../types/task";
+import { DeleteTask } from "./DeleteTask";
+import { EditTask } from "./EditTask";
 
 type TaskTableProps = {
   tasks: Task[] | undefined;
   userId: number;
 };
 
-export const TaskTable = ({ tasks }: TaskTableProps) => {
+export const TaskTable = ({ tasks, userId }: TaskTableProps) => {
   return (
     <TableContainer component={Paper} sx={{ width: "80vw", m: "auto" }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -35,7 +38,12 @@ export const TaskTable = ({ tasks }: TaskTableProps) => {
               </TableCell>
               <TableCell align="right">{task.dueDate}</TableCell>
               <TableCell align="right">{task.status}</TableCell>
-              <TableCell align="right"></TableCell>
+              <TableCell align="right">
+                <Stack direction="row" justifyContent="flex-end" spacing={2}>
+                  <EditTask task={task} userId={userId} />
+                  <DeleteTask id={task.id} userId={userId} />
+                </Stack>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
